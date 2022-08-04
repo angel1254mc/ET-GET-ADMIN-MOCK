@@ -1,0 +1,93 @@
+.login_column {
+    max-width: 400px;
+    background-color: #162225;
+    height: 100vh;
+    padding-top: 200px;
+    padding-bottom: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.login_background {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://emergingtech.co/wp-content/uploads/revslider/video-media/video_Trim_1.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login_image {
+    margin-left:40px;
+    margin-right:40px;
+    width: 320px;
+    height: 173px;
+    position: relative;
+}
+.header {
+ font-size: 2rem;
+ font-weight: light;
+ display: flex;
+ width: 100%;
+ justify-content: center;
+ color: white;
+}
+.form {
+    margin-top: 40px;
+    width: 90%;
+    justify-content: start;
+    display: flex;
+    flex-direction:column;
+}
+.username_header{
+    color:white;
+    margin-bottom:10px;
+    font-size: 1.40rem;
+}
+.password_header{
+    margin-top: 10px;
+    color:white;
+    margin-bottom:10px;
+    font-size: 1.40rem;
+}
+.username_input {
+    font-size: 1.25rem;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius: 5px;
+}
+.password_input {
+    font-size: 1.25rem;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:5px;
+}
+.sign_in_button {
+    padding: 5px;
+    margin-top: 30px;
+    font-size :1.40rem;
+    color: white;
+    font-weight: bold;
+    background-color: #34A49D;
+    border-radius: 5px;
+    width:100px;
+    height: auto;
+}
+.center_horizontal {
+    display:flex;
+    justify-content:center;
+}
+.errmsg {
+    font-size: 1.25rem;
+    color: red;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: pink;
+    border: 2px solid red;
+}
+.offscreen {
+    color: transparent;
+    background-color :transparent;
+    border-radius: transparent;
+}

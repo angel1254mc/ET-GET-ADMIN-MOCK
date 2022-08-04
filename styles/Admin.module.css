@@ -1,0 +1,52 @@
+.admin_container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #EFEBEB;
+}
+.admin_sidebar {
+    width: 250px;
+    height: 100vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #162225;
+}
+.admin_main {
+    float: none;
+    display:flex;
+    background-color: #EFEBEB;
+    height: 100vh;
+}
+.sidebar_content_top {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    color: white;
+    font-size: 1.30rem;
+
+}
+.sidebar_content_bottom {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    color: white;
+    font-size: 1.30rem;
+}
+.sidebar_item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.sidebar_logo {
+    fill: white;
+    height: 1.30rem;
+    margin-right: 10px;
+}
+.main_logo {
+    margin-bottom: 20px;
+}
