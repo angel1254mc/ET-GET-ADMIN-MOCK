@@ -1,9 +1,23 @@
 .content_container {
-    width: 950px;
+    width: 980px;
+    margin-left: 40px;
+    margin-right: 40px;
     display: flex;
     flex-direction: column;
 }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
 .requested_header {
+    animation: fadeInUp 0.8s;
     color: black;
     display: flex;
     height: auto;
@@ -26,6 +40,7 @@
 }
 
 .search_component {
+    animation: fadeInUp 0.8s;
     display: flex;
     width: 550px;
     margin-bottom: 10px;
@@ -55,7 +70,12 @@
 }
 
 .term_cards_container {
-    width: 100%;
+    width: auto;
     height: 70vh;
     overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: 5px;
+    column-gap: 10px;
 }
+

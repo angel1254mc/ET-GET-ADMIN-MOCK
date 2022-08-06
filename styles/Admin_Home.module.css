@@ -1,0 +1,38 @@
+.main_message_container {
+    min-width: 75vw;
+    height: 90vh;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_message_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 880px;
+}
+.upper_spacing {
+    margin-top: 30px;
+}
+.gears_svg {
+    fill: white;
+    height: 380px;
+}
+.main_lead {
+    font-size: 28px;
+    font-weight: light;
+    font-color: #756C6C;
+}
+.main_subtitle {
+    font-size: 16px;
+    font-color: #756C6C;
+    width: 300px;
+    text-align: center;
+}
+.main_links {
+    color: #34A49D;
+    text-decoration: underline #34A49D;
+}
