@@ -9,29 +9,64 @@ import GlossTerms from '../../public/gloss_terms.svg';
 import CardComponent from '../../src/components/CardComponent';
 import Pagination from '../../src/components/Pagination';
 import { useRouter } from 'next/router';
-const itemsPerPage = 7;
-const totalItemCount = 1000;
+import SearchBar from '../../src/components/SearchBar';
+import NoResultsIndicator from '../../src/components/NoResultsIndicator';
 
-const totalPages = Math.ceil(totalItemCount/itemsPerPage);
 
-function Requested({terms, current_page}) {
+function Requested({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
     const [currPage, setCurrPage] = useState(current_page);
     const [loading, setLoading] = useState(true);
     const [pageData, setPageData] = useState([]); //Empty array that will be populated w/ fetch data and handleGetPageData
-    
+    const [currSearch, setCurrSearch] = useState(search_query);
     /**Defining functions for maping server-side data on component mount */
-    const handleGetPageData = (collection_alias = "", page = 1, search = "") => {
-        fetch()
+    const handleGetPageData = (page = 1, search = "") => {
+        if (!search || search.length <= 0)
+        {
+            fetch('https://get-server-prod.herokuapp.com/' + 'glossary/retrieveall?' + new URLSearchParams({
+                page: page,
+                collection_alias: 'requested',
+                results_per_page: 8
+            }), {
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then((data) => {
+                setPageData(data);
+                setLoading(false);
+            })
+        }
+        else if (search.length > 0)
+        {
+            fetch('https://get-server-prod.herokuapp.com/' + 'glossary?' + new URLSearchParams({
+                page: page,
+                collection_alias: 'requested',
+                term: search,
+                results_per_page: 8
+            }), {
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then((data) => {
+                setPageData(data);
+                console.log(data);
+                setLoading(false);
+            })
+        }
     }
     
     //Runs whenever theres a change in queries- refetches data for current page and populates w/ elements
     useEffect(() => {
         if (!(Object.keys(router.query).length <= 0))
         {
-            console.log("new router query params: " + JSON.stringify(router.query));
+            //console.log("new router query params: " + JSON.stringify(router.query));
+            setCurrSearch(router.query?.search);
             setCurrPage(router.query.page);
+            setLoading(true);
+            handleGetPageData( router.query.page, router.query.search)
         }
+        else
+            handleGetPageData(1, "");
             
     }, [router.query])
     return (
@@ -45,23 +80,18 @@ function Requested({terms, current_page}) {
                     Requested Terms
                 </div>
             </div>
-            <div className={ReqStyles.search_component}>
-                
-                <input className={ReqStyles.search_form} type="text" id="fname" name="fname" placeholder="Search Terms"></input>
-                <button>
-                    <div className={ReqStyles.search_button}> Search</div>
-                </button>
-            </div>
+            {/**<SearchBar active_href="requested"/>*/}
             <div className={ReqStyles.term_cards_container}>
                 {
-                    loading ? "Loading Data (replace with loading svg)"
-                    : fakeData.map((data, index) => {
-                        return index < 8 ? <CardComponent data={data} key={'key-card-' + index} index={index}></CardComponent> : "";
+                    loading ? ""
+                    : pageData.map((data, index) => {
+                        return index < 8 ? <CardComponent collection_alias={"requested"} data={data} key={'key-card-' + index} index={index}></CardComponent> : "";
                     })
 
                 }
+
             </div>
-            <Pagination additionalURLParams={'&filter=booty'} active_href="requested" curr_page={currPage} total_pages={totalPages}></Pagination>
+            <Pagination additionalURLParams={'none'} active_href="requested" curr_page={currPage} total_pages={totalPages} searchQuery={currSearch}></Pagination>
           </div>
         </div>
     </div>
@@ -69,11 +99,22 @@ function Requested({terms, current_page}) {
 }
 
 export async function getServerSideProps (ctx) {
+    let totalPages;
+    totalPages = await fetch('https://get-server-prod.herokuapp.com/glossary/collectionsize?' + new URLSearchParams({
+        collection_alias: 'requested',
+        search_term: ctx.query?.search ? ctx.query.search : ""
+    }), {
+        credentials: 'include'
+    })
+    totalPages = await totalPages.json();
+    totalPages = Math.floor(totalPages.totalElements/8) + 1;//total amount of elements divided by elements per page, roofed, yields total page count
     return {
         props: 
         {
+            totalPages: totalPages, //Create server endpoint to retrieve size of collection
             terms : fakeData,
-            current_page: ctx.query?.page ? ctx.query.page : 1
+            current_page: ctx.query?.page ? ctx.query.page : 1,
+            search: ctx.query?.search ? ctx.query.search : ""
         }
     }
 }

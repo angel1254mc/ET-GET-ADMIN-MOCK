@@ -1,0 +1,81 @@
+.content_container {
+    width: 980px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+.Gloss_header {
+    animation: fadeInUp 0.8s;
+    color: black;
+    display: flex;
+    height: auto;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.header_icon {
+    width: 25px;
+    height: auto;
+}
+.header_lead {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.search_component {
+    animation: fadeInUp 0.8s;
+    display: flex;
+    width: 550px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.search_form {
+    font-size: 1.00rem;
+    padding-left:10px;
+    display: flex;
+    height: 45px;
+    width: 350px;
+    padding-right:10px;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid #8E8C8C
+}
+.search_button {
+    background-color: #34A49D;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.term_cards_container {
+    width: auto;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: 5px;
+    column-gap: 10px;
+}
+

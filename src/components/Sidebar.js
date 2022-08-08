@@ -4,6 +4,7 @@ import styles from '../../styles/Admin.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReqTerms from '../../public/req_terms.svg'
+import logo from '../../public/etLogo.webp'
 import GlossTerms from '../../public/gloss_terms.svg';
 import Settings from '../../public/settings.svg';
 const path_to_focus = {
@@ -19,9 +20,13 @@ const Sidebar = ({curr_path = null}) => {
     return (
     <div className={styles.admin_sidebar}>
         <div className={styles.sidebar_content_top}>
-          <div className={styles.main_logo}>
-            <Image src="/../public/etLogo.webp" object-fit="contain" layout="fixed" width={200} height={108}></Image>
-          </div>
+          <Link href='/admin/'>
+            <a>
+            <div className={styles.main_logo}>
+              <Image src={logo} object-fit="contain" layout="fixed" width={200} height={108}></Image>
+            </div>
+            </a>
+          </Link>
           <Link href="/admin/requested">
             <a>
               <div className={styles.sidebar_item} id="req_terms_link">
@@ -38,9 +43,13 @@ const Sidebar = ({curr_path = null}) => {
           </Link>
         </div>
         <div className={styles.sidebar_content_bottom}>
-          <div className={styles.sidebar_item} id="settings_link">
-            <Settings className={styles.sidebar_logo}/> Settings
-          </div>
+        <Link href="/admin/settings">
+            <a>
+              <div className={styles.sidebar_item} id="settings_link">
+                <Settings className={styles.sidebar_logo}/> Settings
+              </div>
+            </a>
+        </Link>
         </div>
     </div>
   )
