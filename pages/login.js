@@ -8,7 +8,7 @@ import axios from '../src/axiosAPI/axios';
 import { style } from '@mui/system';
 import Router from 'next/router';
 import useAuth from '../src/hooks/useAuth';
-
+import Logo from '../public/etLogo.webp';
 const LOGIN_URL = 'api/login'; /** @note Gotta change this Something else actually */
 
 const Login = () => {
@@ -64,7 +64,7 @@ const Login = () => {
     <div className={styles.login_background}>
         <div className={styles.login_column}>
             <div className={styles.login_image}>
-                <Image src="/../public/etLogo.webp" object-fit="contain" layout="fill"></Image>
+                <Image src={Logo} object-fit="contain" layout="fill"></Image>
             </div>
             <div className={styles.header}>
                 GET Admin Portal
