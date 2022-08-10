@@ -9,6 +9,5 @@ export default async (req, res) => {
         credentials: 'include'
     })
     let response = await totalPages.json();
-    console.log(response);
     res.json(response);
 }

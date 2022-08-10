@@ -11,5 +11,6 @@ export default async (req, res) => {
         credentials: 'include'
     })
     response = await response.json();
+    console.log(response);
     res.json(response);
 }

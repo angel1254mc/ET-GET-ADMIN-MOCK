@@ -15,6 +15,7 @@ const itemsPerPage = 7;
 const totalItemCount = 1000;
 
 const totalPages = Math.ceil(totalItemCount/itemsPerPage);
+const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 
 function Glossary({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
@@ -27,7 +28,7 @@ function Glossary({terms, current_page, totalPages, search_query}) {
         
         if (!search || search.length <= 0)
         {
-            fetch('http://localhost:3000/api/' + 'glossary/browsecollection?' + new URLSearchParams({
+            fetch('/api/glossary/browsecollection?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'glossary',
                 results_per_page: 8
@@ -42,7 +43,7 @@ function Glossary({terms, current_page, totalPages, search_query}) {
         }
         else if (search.length > 0)
         {
-            fetch('http://localhost:3000/api/' + 'glossary?' + new URLSearchParams({
+            fetch('/api/glossary?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'glossary',
                 term: search,
@@ -111,7 +112,7 @@ export async function getServerSideProps (ctx) {
       },
     } 
     let totalPages;
-    totalPages = await fetch('http://localhost:3000/api/glossary/searchsize?' + new URLSearchParams({
+    totalPages = await fetch(BASE_URL + '/api/glossary/searchsize?' + new URLSearchParams({
         collection_alias: 'glossary',
         search_term: ctx.query?.search ? ctx.query.search : ""
     }), {

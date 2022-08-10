@@ -6,7 +6,8 @@ import Link from 'next/link';
 import Sidebar from '../../../src/components/Sidebar';
 import Gears from '../../../public/gears_small.svg'
 import tidStyles from '../../../styles/tid.module.css'
-
+import authMiddleware from '../../../src/controller/authMiddleware';
+const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 export default function termId({data, termID, collection_alias}) {
 
   const initialTermData = data;
@@ -26,10 +27,27 @@ export default function termId({data, termID, collection_alias}) {
     }
   }
   const [termData, changeTermData] = useReducer(termReducer, initialTermData);
+  const handleAddSource = () => {
 
-  useEffect(() => {
+  }
+  const handleUpdate = async () => {
+    const body = {
+      id: termID,
+      update: termData
+    }
+    const response =  await fetch('/api/glossary/updateterm', {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(body)
+  })
+  }
+  const handleDelete = async () => {
+
+  }
+  /**useEffect(() => {
     console.log(termData);
-  },[termData])
+  },[termData])*/
+
   return (
     <div className={styles.admin_container}>
         <Sidebar></Sidebar>
@@ -101,20 +119,23 @@ export default function termId({data, termID, collection_alias}) {
                   </div>
                   <h3>More functionality Coming soon!</h3>
                   <hr className={tidStyles.src_hr_separator}/>
-                  <button className={tidStyles.action_button + ' ' + tidStyles.smaller}> Add More +</button> 
+                  <button className={tidStyles.action_button + ' ' + tidStyles.smaller} onClick={() => {
+                      handleAddSource()
+                    }
+                  }> Add More +</button> 
                 </div>
               </div>
             </div>
             {
               collection_alias == "glossary" ? 
               <div className={tidStyles.action_buttons}>
-                <button className={tidStyles.critical_button} onClick={() => {handleDeny}}>Delete</button>
-                <button className={tidStyles.action_button} onClick={() => {handleApprove}}>Update</button>
+                <button className={tidStyles.critical_button} onClick={handleDelete}>Delete</button>
+                <button className={tidStyles.action_button} onClick={handleUpdate}>Update</button>
               </div>
               :
               <div className={tidStyles.action_buttons}>
-                <button className={tidStyles.critical_button} onClick={() => {handleDelete}}>Deny</button>
-                <button className={tidStyles.action_button} onClick={() => {handleUpdate}}>Approve</button>
+                <button className={tidStyles.critical_button} onClick={() => {handleDeny}}>Deny</button>
+                <button className={tidStyles.action_button} onClick={() => {handleApprove}}>Approve</button>
               </div>
             }
           </div>
@@ -124,7 +145,15 @@ export default function termId({data, termID, collection_alias}) {
 }
 
 export async function getServerSideProps (ctx) {
-    let term_data = await fetch('https://get-server-prod.herokuapp.com/glossary/findbyid?' + new URLSearchParams({
+    const userIsAuthenticated = authMiddleware(ctx.req);
+    if (!userIsAuthenticated)
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    } 
+    let term_data = await fetch(BASE_URL + '/api/glossary/findbyid?' + new URLSearchParams({
       collection_alias: ctx.query.collection_alias,
       id: ctx.query.tid ? ctx.query.tid : ""
       }), {

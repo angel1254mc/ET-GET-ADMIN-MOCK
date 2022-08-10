@@ -13,6 +13,7 @@ import SearchBar from '../../src/components/SearchBar';
 import NoResultsIndicator from '../../src/components/NoResultsIndicator';
 import authMiddleware from '../../src/controller/authMiddleware';
 
+const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 
 function Requested({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
@@ -24,7 +25,7 @@ function Requested({terms, current_page, totalPages, search_query}) {
     const handleGetPageData = (page = 1, search = "") => {
         if (!search || search.length <= 0)
         {
-            fetch('http://localhost:3000/api/' + 'glossary/retrieveall?' + new URLSearchParams({
+            fetch('/api/glossary/browsecollection?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'requested',
                 results_per_page: 8
@@ -39,7 +40,7 @@ function Requested({terms, current_page, totalPages, search_query}) {
         }
         else if (search.length > 0)
         {
-            fetch('http://localhost:3000/api/' + 'glossary?' + new URLSearchParams({
+            fetch('/api/glossary?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'requested',
                 term: search,
@@ -111,7 +112,7 @@ export async function getServerSideProps (ctx) {
     } 
     
     let totalPages;
-    totalPages = await fetch('http://localhost:3000/api/glossary/searchsize?' + new URLSearchParams({
+    totalPages = await fetch(BASE_URL + '/api/glossary/searchsize?' + new URLSearchParams({
         collection_alias: 'requested',
         search_term: ctx.query?.search ? ctx.query.search : ""
     }), {
