@@ -54,7 +54,7 @@ function Pagination({curr_page, total_pages, active_href = "glossary", searchQue
                 value={desiredPage}
                 placeholder={curr_page}
                 onChange={(event) => {
-                    setDesiredPage(parseInt(event.target.value));
+                    setDesiredPage(parseInt(event.target.value ? event.target.value : 0));
                     }
                 }
                 onKeyDown={e => {
