@@ -54,7 +54,6 @@ function Glossary({terms, current_page, totalPages, search_query}) {
             .then(response => response.json())
             .then((data) => {
                 setPageData(data);
-                console.log(data);
                 setLoading(false);
             })
         }

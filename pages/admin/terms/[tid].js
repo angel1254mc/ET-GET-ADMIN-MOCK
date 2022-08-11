@@ -7,9 +7,10 @@ import Sidebar from '../../../src/components/Sidebar';
 import Gears from '../../../public/gears_small.svg'
 import tidStyles from '../../../styles/tid.module.css'
 import authMiddleware from '../../../src/controller/authMiddleware';
+import {useRouter} from 'next/router';
 const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 export default function termId({data, termID, collection_alias}) {
-
+  const router = useRouter();
   const initialTermData = data;
   const termReducer = (state, action) => {
     switch(action.target)
@@ -39,10 +40,21 @@ export default function termId({data, termID, collection_alias}) {
       credentials: 'include',
       method: 'POST',
       body: JSON.stringify(body)
-  })
+    });
+    const responseJSON = await response.json();
+    //router.reload(window.location.pathname)
   }
   const handleDelete = async () => {
-
+    const body = {
+      id: termID
+    }
+    const response =  await fetch('/api/glossary/deleteterm', {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+    const responseJSON = await response.json();
+    router.back();
   }
   /**useEffect(() => {
     console.log(termData);

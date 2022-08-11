@@ -1,7 +1,7 @@
 
 
 export default async (req, res) => {
-    const response = await fetch('https://get-server-prod.herokuapp.com/' + 'glossary/retrieveall?' + new URLSearchParams({
+    const response = await fetch('https://get-server-prod.herokuapp.com/' + 'glossary/browsecollection?' + new URLSearchParams({
                 page: req.query.page,
                 collection_alias: req.query.collection_alias,
                 results_per_page: 8
