@@ -4,16 +4,15 @@ import Image from 'next/image'
 import styles from '../styles/Login.module.css';
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/Link';
-import AuthContext from '../src/Context/authProvider'
 import axios from '../src/axiosAPI/axios';
-import {useContext} from 'react';
 import { style } from '@mui/system';
 import Router from 'next/router';
-
-const LOGIN_URL = '/login'; /** @note Gotta change this Something else actually */
+import useAuth from '../src/hooks/useAuth';
+import Logo from '../public/etLogo.webp';
+const LOGIN_URL = 'api/login'; /** @note Gotta change this Something else actually */
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth()
     const userRef = useRef();
     const errRef = useRef();
     const [success, setSuccess] = useState(false);
@@ -32,13 +31,15 @@ const Login = () => {
                 }
             );
             //console.log(JSON.stringify(response?.data)) //nooooo waydo not console log yo stuff
-            const accessToken = response?.data?.accessToken;
-            setAuth({user, pwd, accessToken})
-            setErrMsg('');
-            setSuccess(true);
-            setTimeout (() => {
-                Router.push('/admin')
-            }, 1000);
+            if (response.status == '200' || response.status === 200)
+            {
+                setAuth({user, pwd})
+                setErrMsg('');
+                setSuccess(true);
+                setTimeout (() => {
+                    Router.push('/admin')
+                }, 1000);
+            }
         }
         catch (err) {
             if (!err?.response) {
@@ -63,7 +64,7 @@ const Login = () => {
     <div className={styles.login_background}>
         <div className={styles.login_column}>
             <div className={styles.login_image}>
-                <Image src="/../public/etLogo.webp" object-fit="contain" layout="fill"></Image>
+                <Image src={Logo} object-fit="contain" layout="fill"></Image>
             </div>
             <div className={styles.header}>
                 GET Admin Portal

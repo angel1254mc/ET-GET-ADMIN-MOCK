@@ -1,7 +1,6 @@
 import React from 'react'
 
 function NoResultsIndicator({pageData}) {
-    console.log(pageData.length);
     if (pageData.length > 0)
         return (
         <></>

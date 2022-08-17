@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/Admin.module.css';
 import Home from '../../styles/Admin_Home.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import Sidebar from '../../src/components/Sidebar';
 import Gears from '../../public/gears_small.svg'
+import axios from '../../src/axiosAPI/axios';
+import useRefreshToken from '../../src/hooks/useRefreshToken';
+import { verify } from 'jsonwebtoken';
+import authMiddleware from '../../src/controller/authMiddleware';
 
 export default function index() {
+  const refresh = useRefreshToken();
+
   return (
     <div className={styles.admin_container}>
         <Sidebar></Sidebar>
@@ -32,3 +38,21 @@ export default function index() {
     </div>
   )
 }
+
+export async function getServerSideProps (ctx) {
+  const userIsAuthenticated = authMiddleware(ctx.req);
+  console.log(userIsAuthenticated);
+  if (!userIsAuthenticated)
+  return {
+    redirect: {
+      destination: '/login',
+      permanent: false,
+    },
+  }
+  return {
+    props: {
+
+    }
+  }
+}
+

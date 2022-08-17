@@ -10,10 +10,12 @@ import CardComponent from '../../src/components/CardComponent';
 import { useRouter } from 'next/router';
 import SearchBar from '../../src/components/SearchBar';
 import NoResultsIndicator from '../../src/components/NoResultsIndicator';
+import authMiddleware from '../../src/controller/authMiddleware';
 const itemsPerPage = 7;
 const totalItemCount = 1000;
 
 const totalPages = Math.ceil(totalItemCount/itemsPerPage);
+const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 
 function Glossary({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
@@ -26,7 +28,7 @@ function Glossary({terms, current_page, totalPages, search_query}) {
         
         if (!search || search.length <= 0)
         {
-            fetch('https://get-server-prod.herokuapp.com/' + 'glossary/retrieveall?' + new URLSearchParams({
+            fetch('/api/glossary/browsecollection?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'glossary',
                 results_per_page: 8
@@ -41,7 +43,7 @@ function Glossary({terms, current_page, totalPages, search_query}) {
         }
         else if (search.length > 0)
         {
-            fetch('https://get-server-prod.herokuapp.com/' + 'glossary?' + new URLSearchParams({
+            fetch('/api/glossary?' + new URLSearchParams({
                 page: page,
                 collection_alias: 'glossary',
                 term: search,
@@ -52,7 +54,6 @@ function Glossary({terms, current_page, totalPages, search_query}) {
             .then(response => response.json())
             .then((data) => {
                 setPageData(data);
-                console.log(data);
                 setLoading(false);
             })
         }
@@ -101,8 +102,16 @@ function Glossary({terms, current_page, totalPages, search_query}) {
   )
 }
 export async function getServerSideProps (ctx) {
+    const userIsAuthenticated = authMiddleware(ctx.req);
+    if (!userIsAuthenticated)
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    } 
     let totalPages;
-    totalPages = await fetch('https://get-server-prod.herokuapp.com/glossary/collectionsize?' + new URLSearchParams({
+    totalPages = await fetch(BASE_URL + '/api/glossary/searchsize?' + new URLSearchParams({
         collection_alias: 'glossary',
         search_term: ctx.query?.search ? ctx.query.search : ""
     }), {
