@@ -31,6 +31,33 @@ export default function termId({data, termID, collection_alias}) {
   const handleAddSource = () => {
 
   }
+  const handleDeny = async () => {
+    const body = {
+      id: termID,
+      update: termData
+    }
+    const response =  await fetch('/api/glossary/denyterm', {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+    const responseJSON = await response.json();
+    router.back();
+  }
+  const handleApprove = async () => {
+    const body = {
+      id: termID,
+      update: termData
+    }
+    const response =  await fetch('/api/glossary/approveterm', {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+    const responseJSON = await response.json();
+    console.log(responseJSON);
+    router.back();
+  }
   const handleUpdate = async () => {
     const body = {
       id: termID,
@@ -146,8 +173,8 @@ export default function termId({data, termID, collection_alias}) {
               </div>
               :
               <div className={tidStyles.action_buttons}>
-                <button className={tidStyles.critical_button} onClick={() => {handleDeny}}>Deny</button>
-                <button className={tidStyles.action_button} onClick={() => {handleApprove}}>Approve</button>
+                <button className={tidStyles.critical_button} onClick={handleDeny}>Deny</button>
+                <button className={tidStyles.action_button} onClick={handleApprove}>Approve</button>
               </div>
             }
           </div>
