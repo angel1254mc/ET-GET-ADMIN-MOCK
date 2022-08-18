@@ -55,7 +55,6 @@ export default function termId({data, termID, collection_alias}) {
       body: JSON.stringify(body)
     });
     const responseJSON = await response.json();
-    console.log(responseJSON);
     router.back();
   }
   const handleUpdate = async () => {
