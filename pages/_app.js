@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from '../src/theme';
+import theme from '../src/Theme.js';
 import createEmotionCache from '../src/createEmotionCache';
 import { AuthProvider } from '../src/Context/authProvider';
 import '../styles/globals.css';
