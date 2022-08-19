@@ -8,7 +8,7 @@ import Gears from '../../../public/gears_small.svg'
 import tidStyles from '../../../styles/tid.module.css'
 import authMiddleware from '../../../src/controller/authMiddleware';
 import {useRouter} from 'next/router';
-const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
+
 export default function TermId({data, termID, collection_alias}) {
   const router = useRouter();
   const initialTermData = data;
@@ -183,6 +183,7 @@ export default function TermId({data, termID, collection_alias}) {
 }
 
 export async function getServerSideProps (ctx) {
+  const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
     const userIsAuthenticated = authMiddleware(ctx.req);
     if (!userIsAuthenticated)
     return {

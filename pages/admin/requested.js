@@ -13,7 +13,6 @@ import SearchBar from '../../src/components/SearchBar';
 import NoResultsIndicator from '../../src/components/NoResultsIndicator';
 import authMiddleware from '../../src/controller/authMiddleware';
 
-const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 
 function Requested({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
@@ -101,6 +100,7 @@ function Requested({terms, current_page, totalPages, search_query}) {
 }
 
 export async function getServerSideProps (ctx) {
+    const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
     const userIsAuthenticated = authMiddleware(ctx.req);
     console.log(userIsAuthenticated);
     if (!userIsAuthenticated)

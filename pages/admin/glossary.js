@@ -15,7 +15,6 @@ const itemsPerPage = 7;
 const totalItemCount = 1000;
 
 const totalPages = Math.ceil(totalItemCount/itemsPerPage);
-const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
 
 function Glossary({terms, current_page, totalPages, search_query}) {
     const router = useRouter();
@@ -102,6 +101,7 @@ function Glossary({terms, current_page, totalPages, search_query}) {
   )
 }
 export async function getServerSideProps (ctx) {
+    const BASE_URL = process.env.ENVIRONMENT === "development" ? 'http://localhost:3000' : process.env.HOST;
     const userIsAuthenticated = authMiddleware(ctx.req);
     if (!userIsAuthenticated)
     return {
