@@ -1,13 +1,14 @@
 .body{
     background: rgb(239,235,235);
+    height: 100vh;
+    overflow-y:hidden;
 }
 
 .title{
     font-family: 'Gill Sans MT';
     font-size: xx-large;
     position: relative;
-    left: 60px;
-    top: 30px;
+    margin-top: 30px;
 }
 
 .button1{
@@ -32,20 +33,26 @@
 }
 
 .admin_text{
+    display: flex;
+    width: 50%;
     font-size: medium;
     font-family: 'Gill Sans MT';
     position: relative;
-    top: 108px;
-    left: 60px;
+    align-items: center;
+    height: auto;
 
 }
-
+.flex_row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top: 40px;
+}
 .login{
     font-size: large;
     font-family: 'Gill Sans MT';
     position: relative;
     top: 30px;
-    left: 120px;
 }
 
 .password{
@@ -55,7 +62,6 @@
 
 .login_input{
     position: relative;
-    left: 120px;
     top: 45px;
 }
 
@@ -77,21 +83,20 @@
     font-size: medium;
     font-family: 'Gill Sans MT';
     position: relative;
-    left: 60px;
-    top: 80px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    display: flex;
 }
 
 .button2{
     font-size: medium;
     font-family: 'Gill Sans MT';
-    margin-left: 380px;
+    margin-left: 50px;
     background-color: red;
     border: 2px solid red;
     border-radius: 12px;
     transition-duration: 0.4s;
     position: relative;
-    top: 54px;
-    left: -240px;
     width: 60PX;
     height: 30px;
 }
@@ -102,17 +107,17 @@
 }
 .flex_button_container {
     display: flex;
-    padding-left: 720px;
-    padding-top: 79px;
-
+    height: auto;
 }
-
+.select_container {
+    display: flex;
+    height: 30px;
+    margin-right: 60px;
+}
 .dropdown{
     font-size: large;
     font-family: 'Gill Sans MT';
     position: relative;
-    top: 100px;
-    left: 60px;
     border: 2px solid #162225;
     border-radius: 4px;
 }
@@ -126,8 +131,6 @@
     flex-direction: column;
     width: 200px;
     position: relative;
-    left: 300px;
-    top: 100px;
 }
 
 .read_option{
@@ -146,4 +149,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.main_center {
+    height: 100%;
+    width: 70%;
+    min-width: 700px;
 }
