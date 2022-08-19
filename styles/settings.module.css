@@ -1,0 +1,149 @@
+.body{
+    background: rgb(239,235,235);
+}
+
+.title{
+    font-family: 'Gill Sans MT';
+    font-size: xx-large;
+    position: relative;
+    left: 60px;
+    top: 30px;
+}
+
+.button1{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #34a49d;
+    border: 2px solid #34a49d;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    padding: 0px;
+}
+
+.button1:hover{
+    background-color: white;
+    color: #34a49d;
+}
+
+.admin_text{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    top: 108px;
+    left: 60px;
+
+}
+
+.login{
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    top: 30px;
+    left: 120px;
+}
+
+.password{
+    position: relative;
+    left: 280px;
+}
+
+.login_input{
+    position: relative;
+    left: 120px;
+    top: 45px;
+}
+
+.username_input{
+    border: 2px solid #162225;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.password_input{
+    position: relative;
+    left: 60px;
+    border: 2px solid #162225;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.logout{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    left: 60px;
+    top: 80px;
+}
+
+.button2{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    margin-left: 380px;
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    position: relative;
+    top: 54px;
+    left: -240px;
+    width: 60PX;
+    height: 30px;
+}
+
+.button2:hover{
+    background-color: white;
+    color: red;
+}
+.flex_button_container {
+    display: flex;
+    padding-left: 720px;
+    padding-top: 79px;
+
+}
+
+.dropdown{
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    top: 100px;
+    left: 60px;
+    border: 2px solid #162225;
+    border-radius: 4px;
+}
+
+.temp_checklist{
+    background-color: #d9d9d9;
+    color: black;
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    position: relative;
+    left: 300px;
+    top: 100px;
+}
+
+.read_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
