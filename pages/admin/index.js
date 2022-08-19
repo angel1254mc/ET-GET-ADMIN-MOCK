@@ -10,7 +10,7 @@ import useRefreshToken from '../../src/hooks/useRefreshToken';
 import { verify } from 'jsonwebtoken';
 import authMiddleware from '../../src/controller/authMiddleware';
 
-export default function index() {
+export default function Index() {
   const refresh = useRefreshToken();
 
   return (
