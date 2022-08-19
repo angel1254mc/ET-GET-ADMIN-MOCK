@@ -111,6 +111,7 @@ export async function getServerSideProps (ctx) {
       },
     } 
     let totalPages;
+    console.log(BASE_URL);
     totalPages = await fetch(BASE_URL + '/api/glossary/searchsize?' + new URLSearchParams({
         collection_alias: 'glossary',
         search_term: ctx.query?.search ? ctx.query.search : ""
