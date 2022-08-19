@@ -1,0 +1,158 @@
+.body{
+    background: rgb(239,235,235);
+    height: 100vh;
+    overflow-y:hidden;
+}
+
+.title{
+    font-family: 'Gill Sans MT';
+    font-size: xx-large;
+    position: relative;
+    margin-top: 30px;
+}
+
+.button1{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #34a49d;
+    border: 2px solid #34a49d;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    padding: 0px;
+}
+
+.button1:hover{
+    background-color: white;
+    color: #34a49d;
+}
+
+.admin_text{
+    display: flex;
+    width: 50%;
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    align-items: center;
+    height: auto;
+
+}
+.flex_row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top: 40px;
+}
+.login{
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    top: 30px;
+}
+
+.password{
+    position: relative;
+    left: 280px;
+}
+
+.login_input{
+    position: relative;
+    top: 45px;
+}
+
+.username_input{
+    border: 2px solid #162225;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.password_input{
+    position: relative;
+    left: 60px;
+    border: 2px solid #162225;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.logout{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.button2{
+    font-size: medium;
+    font-family: 'Gill Sans MT';
+    margin-left: 50px;
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    position: relative;
+    width: 60PX;
+    height: 30px;
+}
+
+.button2:hover{
+    background-color: white;
+    color: red;
+}
+.flex_button_container {
+    display: flex;
+    height: auto;
+}
+.select_container {
+    display: flex;
+    height: 30px;
+    margin-right: 60px;
+}
+.dropdown{
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    position: relative;
+    border: 2px solid #162225;
+    border-radius: 4px;
+}
+
+.temp_checklist{
+    background-color: #d9d9d9;
+    color: black;
+    font-size: large;
+    font-family: 'Gill Sans MT';
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    position: relative;
+}
+
+.read_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_center {
+    height: 100%;
+    width: 70%;
+    min-width: 700px;
+}
