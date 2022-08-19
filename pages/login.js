@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Login.module.css';
 import { useRef, useState, useEffect } from 'react';
-import Link from 'next/Link';
+import Link from 'next/link';
 import axios from '../src/axiosAPI/axios';
 import { style } from '@mui/system';
 import Router from 'next/router';
