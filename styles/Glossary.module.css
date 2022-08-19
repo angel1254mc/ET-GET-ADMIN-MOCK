@@ -72,7 +72,8 @@
 .term_cards_container {
     width: auto;
     height: 70vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     flex-flow: row wrap;
     row-gap: 5px;
